@@ -73,7 +73,6 @@ private fun CalculatorScreen() {
                     ) {
                         row.forEach { label ->
                             Button(
-                                Modifier.weight(1f),
                                 onClick = {
                                     when (label) {
                                         "C" -> clear()
@@ -84,7 +83,8 @@ private fun CalculatorScreen() {
                                         "÷" -> operation(Operation.DIVIDE)
                                         else -> input(label)
                                     }
-                                }
+                                },
+                                modifier = Modifier.weight(1f)
                             ) { Text(label) }
                         }
                     }
