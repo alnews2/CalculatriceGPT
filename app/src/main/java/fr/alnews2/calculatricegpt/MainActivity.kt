@@ -1,5 +1,6 @@
 package fr.alnews2.calculatricegpt
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import fr.alnews2.calculatricegpt.domain.Calculator
 import fr.alnews2.calculatricegpt.domain.Operation
@@ -25,6 +27,7 @@ private fun CalculatorScreen() {
     var storedValue by remember { mutableStateOf<Double?>(null) }
     var pendingOperation by remember { mutableStateOf<Operation?>(null) }
     var enteringNumber by remember { mutableStateOf(false) }
+    val activity = LocalContext.current as? Activity
 
     fun input(value: String) {
         display = if (!enteringNumber || display == "0") value else display + value
@@ -52,14 +55,30 @@ private fun CalculatorScreen() {
     MaterialTheme {
         Surface(Modifier.fillMaxSize()) {
             Column(
-                Modifier.fillMaxSize().padding(16.dp),
+                Modifier
+                    .fillMaxSize()
+                    .padding(19.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    color = MaterialTheme.colorScheme.primaryContainer,
+                    tonalElevation = 2.dp,
+                    shape = MaterialTheme.shapes.medium
+                ) {
+                    Text(
+                        text = "CalculatriceGPT",
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                }
+
                 Text(
                     text = display,
                     modifier = Modifier.fillMaxWidth().weight(1f),
                     style = MaterialTheme.typography.displayLarge
                 )
+
                 listOf(
                     listOf("7", "8", "9", "÷"),
                     listOf("4", "5", "6", "×"),
@@ -88,6 +107,13 @@ private fun CalculatorScreen() {
                             ) { Text(label) }
                         }
                     }
+                }
+
+                OutlinedButton(
+                    onClick = { activity?.finish() },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Quitter")
                 }
             }
         }

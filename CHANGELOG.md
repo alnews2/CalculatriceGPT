@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+### Documentation
+
+- Added developer documentation covering architecture, development workflow, CI/CD, SemVer, releases, and documentation maintenance.
+
+### Added
+
+- Added an application title banner.
+- Added a dedicated button to close the application.
+- Added a 5 mm screen-edge margin around the main interface elements.
+
 ### Fixed
 
 - Release workflow now compares the application version with the latest published SemVer release and skips duplicate-version releases.
