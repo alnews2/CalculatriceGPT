@@ -56,8 +56,8 @@ jobs:
           fi
 
           LATEST_VERSION="${LATEST_TAG#v}"
-          if [[ "$LATEST_TAG" != v* || ! "$LATEST_VERSION" =~ $SEMVER_REGEX ]]; then
-            echo "::error::Latest GitHub Release tag '$LATEST_TAG' is not a valid v<SemVer 2.0.0> tag"
+          if [[ "$LATEST_TAG" != v* ]]; then
+            echo "::error::Latest GitHub Release tag '$LATEST_TAG' does not use the required v<version> convention"
             exit 1
           fi
 
@@ -69,7 +69,8 @@ jobs:
 
           pattern = re.compile(
               r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)"
-              r"(?:-((?:0|[1-9]\d*|[0-9A-Za-z-]+)(?:\.(?:0|[1-9]\d*|[0-9A-Za-z-]+))*))?"
+              r"(?:-((?:0|[1-9]\d*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)"
+              r"(?:\.(?:0|[1-9]\d*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*))*))?"
               r"(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$"
           )
 
