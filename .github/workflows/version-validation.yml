@@ -1,0 +1,102 @@
+name: Version Validation
+
+on:
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate version policy
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os
+          import re
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          pattern = re.compile(
+              r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)"
+              r"(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?"
+              r"(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$"
+          )
+          version_re = re.compile(r'versionName\s*=\s*"([^"]+)"')
+
+          def version(ref):
+              text = subprocess.check_output(
+                  ["git", "show", f"{ref}:app/build.gradle.kts"], text=True
+              )
+              match = version_re.search(text)
+              if not match:
+                  raise SystemExit(f"versionName not found at {ref}")
+              value = match.group(1)
+              if not pattern.fullmatch(value):
+                  raise SystemExit(f"Invalid SemVer 2.0.0: {value}")
+              return value
+
+          def precedence(value):
+              m = pattern.fullmatch(value)
+              core = tuple(map(int, m.group(1, 2, 3)))
+              pre = m.group(4)
+              if not pre:
+                  return core + (1, ())
+              identifiers = []
+              for item in pre.split("."):
+                  identifiers.append((0, int(item)) if item.isdigit() else (1, item))
+              return core + (0, tuple(identifiers))
+
+          base = version(os.environ["BASE_SHA"])
+          head = version(os.environ["HEAD_SHA"])
+
+          changed = subprocess.check_output(
+              ["git", "diff", "--name-only", os.environ["BASE_SHA"], os.environ["HEAD_SHA"]],
+              text=True,
+          ).splitlines()
+
+          allowed_without_bump = {
+              "README.md",
+              "CHANGELOG.md",
+              "docs/DEVELOPMENT.md",
+              ".github/workflows/android.yml",
+              ".github/workflows/release.yml",
+              ".github/workflows/version-validation.yml",
+              "scripts/bump_version.py",
+          }
+          code_change = any(
+              path not in allowed_without_bump
+              and not path.startswith(".github/dependabot")
+              for path in changed
+          )
+
+          if precedence(head) < precedence(base):
+              print(f"::error::PR version {head} is lower than base version {base}.")
+              sys.exit(1)
+
+          if head == base and code_change:
+              print(f"::error::Code changes detected without a SemVer version bump ({base}).")
+              print("Use: python3 scripts/bump_version.py patch|minor|major")
+              sys.exit(1)
+
+          if precedence(head) > precedence(base):
+              changelog = Path("CHANGELOG.md").read_text(encoding="utf-8")
+              if f"## [{head}]" not in changelog:
+                  print(f"::error::CHANGELOG.md has no section for version {head}.")
+                  sys.exit(1)
+
+          print(f"Version policy OK: base={base}, PR={head}, code_change={code_change}")
+          PY
