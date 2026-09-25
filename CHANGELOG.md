@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Fixed
+
+- Release workflow now compares the application version with the latest published SemVer release and skips duplicate-version releases.
+
 ## [0.1.0] - 2026-09-25
 
 ### Added
