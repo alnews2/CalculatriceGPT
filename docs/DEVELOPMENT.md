@@ -23,6 +23,8 @@ Cette documentation décrit les règles utiles pour reprendre le développement 
 - app/src/test/ : tests unitaires de la logique métier.
 - .github/workflows/android.yml : CI Android.
 - .github/workflows/release.yml : automatisation des tags et releases.
+- .github/workflows/version-validation.yml : contrôle de la politique SemVer sur les PR.
+- scripts/bump_version.py : préparation locale d'une nouvelle version.
 - README.md : résumé actuel du projet et point d'entrée documentaire.
 - CHANGELOG.md : historique des changements destiné aux utilisateurs et aux releases.
 - docs/DEVELOPMENT.md : documentation destinée aux développeurs.
@@ -98,6 +100,24 @@ Le versionName Android doit contenir uniquement la version SemVer, sans préfixe
 Les tags GitHub utilisent la convention v<version>.
 
 Exemple : versionName = 0.2.0 donne le tag v0.2.0.
+
+### Préparer une nouvelle version
+
+Le niveau de changement est choisi avant la PR :
+
+- correction rétrocompatible : `patch` ;
+- nouvelle fonctionnalité rétrocompatible : `minor` ;
+- changement incompatible : `major`.
+
+Le script de préparation met à jour `versionName` et transforme la section `[Unreleased]` du changelog en section versionnée :
+
+    python3 scripts/bump_version.py patch
+    python3 scripts/bump_version.py minor
+    python3 scripts/bump_version.py major
+
+Le résultat doit être relu et testé avant l'ouverture de la PR. L'APK testé fonctionnellement doit donc déjà porter la version destinée à la release.
+
+La CI de PR vérifie qu'une modification de code n'est pas fusionnée sans augmentation de version. Les modifications limitées à la documentation ou à la CI peuvent conserver la même version.
 
 ## 9. CHANGELOG
 
