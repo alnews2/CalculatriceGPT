@@ -12,7 +12,9 @@ Application Android native de calculatrice à quatre opérations.
 
 Calculatrice Android native développée en Kotlin et Jetpack Compose. Le projet sert de base à une évolution progressive de l'interface, de la logique métier, des tests et de la chaîne CI/CD.
 
-**Dernière version publiée : 0.1.0**
+**Dernière version publiée : 0.2.0**
+
+La version 0.2.0 apporte notamment un affichage du résultat avec texte blanc sur fond noir et un pied de fenêtre en italique indiquant que l'application a été générée par une intelligence artificielle ChatGPT.
 
 Le résumé de ce fichier doit rester à jour lorsque les fonctionnalités, la stack technique ou l'état du projet évoluent. L'historique détaillé des changements est conservé dans CHANGELOG.md.
 
@@ -34,9 +36,11 @@ Le projet utilise une version stable du Compose BOM compatible avec l'API Androi
 - division
 - effacement
 - affichage du résultat
+- affichage du résultat dans une zone noire avec texte blanc
 - gestion de la division par zéro
 - interface avec bandeau de titre et bouton de fermeture
 - marge d'environ 5 mm autour des éléments principaux
+- pied de fenêtre centré en italique indiquant : « application générée par une intelligence artificielle ChatGPT »
 
 La logique de calcul est séparée de l'interface afin de permettre son évolution sans coupler le moteur de calcul à Compose.
 

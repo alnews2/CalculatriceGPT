@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Documentation
+
+- Updated README.md to reflect the published 0.2.0 version and the result display and AI footer introduced in PR #8.
+
 ## [0.2.0] - 2026-09-25
 
 ### Added
