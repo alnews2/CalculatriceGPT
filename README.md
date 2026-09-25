@@ -46,7 +46,7 @@ Les quatre opérations et la division par zéro disposent de tests unitaires.
 
 ## CI
 
-GitHub Actions exécute les tests Gradle et produit un APK debug téléchargeable comme artefact.
+GitHub Actions exécute les tests Gradle, valide la politique de version SemVer sur les PR et produit un APK debug téléchargeable comme artefact.
 
 ## Documentation développeur
 
@@ -57,7 +57,7 @@ La documentation technique et les règles de contribution sont regroupées dans 
 - les commandes de test et de build ;
 - le fonctionnement de la CI ;
 - le processus de branche, PR et validation ;
-- le versionnement SemVer 2.0.0 ;
+- le versionnement SemVer 2.0.0 et la préparation des versions ;
 - le fonctionnement des releases et du CHANGELOG.md.
 
 ## Cycle de maintenance documentaire
