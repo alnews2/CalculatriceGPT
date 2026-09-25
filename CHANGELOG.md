@@ -5,6 +5,7 @@
 ### Documentation
 
 - Added developer documentation covering architecture, development workflow, CI/CD, SemVer, releases, and documentation maintenance.
+- Added a SemVer version preparation script and PR validation workflow.
 
 ### Added
 
