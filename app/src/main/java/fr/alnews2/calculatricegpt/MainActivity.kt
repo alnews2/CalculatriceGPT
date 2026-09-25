@@ -10,6 +10,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import fr.alnews2.calculatricegpt.domain.Calculator
 import fr.alnews2.calculatricegpt.domain.Operation
@@ -73,11 +75,25 @@ private fun CalculatorScreen() {
                     )
                 }
 
-                Text(
-                    text = display,
-                    modifier = Modifier.fillMaxWidth().weight(1f),
-                    style = MaterialTheme.typography.displayLarge
-                )
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    color = Color.Black,
+                    shape = MaterialTheme.shapes.medium
+                ) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.CenterEnd
+                    ) {
+                        Text(
+                            text = display,
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                            color = Color.White,
+                            style = MaterialTheme.typography.displayLarge
+                        )
+                    }
+                }
 
                 listOf(
                     listOf("7", "8", "9", "÷"),
@@ -115,6 +131,13 @@ private fun CalculatorScreen() {
                 ) {
                     Text("Quitter")
                 }
+
+                Text(
+                    text = "application générée par une intelligence artificielle ChatGPT",
+                    modifier = Modifier.fillMaxWidth(),
+                    style = MaterialTheme.typography.bodySmall.copy(fontStyle = FontStyle.Italic),
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                )
             }
         }
     }
