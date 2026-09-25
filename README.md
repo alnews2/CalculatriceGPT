@@ -1,5 +1,11 @@
 # CalculatriceGPT
 
+[![Android CI](https://github.com/alnews2/CalculatriceGPT/actions/workflows/android.yml/badge.svg)](https://github.com/alnews2/CalculatriceGPT/actions/workflows/android.yml)
+![Android](https://img.shields.io/badge/Android-API%2036-3DDC84?logo=android&logoColor=white)
+![Kotlin](https://img.shields.io/badge/Kotlin-2.2.10-7F52FF?logo=kotlin&logoColor=white)
+![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-UI-4285F4?logo=jetpackcompose&logoColor=white)
+![Gradle](https://img.shields.io/badge/Gradle-9.6-02303A?logo=gradle&logoColor=white)
+
 Application Android native de calculatrice à quatre opérations.
 
 ## Technologies
@@ -10,7 +16,7 @@ Application Android native de calculatrice à quatre opérations.
 - Gradle 9.6
 - JDK 17
 
-Le projet utilise la version stable du Compose BOM recommandée par la documentation Android (2026.09.00).
+Le projet utilise une version stable du Compose BOM compatible avec l'API Android 36.
 
 ## Fonctionnalités du prototype
 
