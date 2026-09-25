@@ -29,6 +29,74 @@ jobs:
             echo "::error::Unable to determine versionName from app/build.gradle.kts"
             exit 1
           fi
+
+          # Strict SemVer 2.0.0:
+          # MAJOR.MINOR.PATCH[-prerelease][+build]
+          SEMVER_REGEX='^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-((0|[1-9][0-9]*)\\.)*(0|[1-9][0-9]*))?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?
+      - name: Verify tag does not already exist
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "::error::A GitHub Release already exists for $TAG"
+            exit 1
+          fi
+          if git rev-parse "refs/tags/$TAG" >/dev/null 2>&1; then
+            echo "::error::Git tag $TAG already exists"
+            exit 1
+          fi
+
+      - name: Download validated APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          gh run download "$RUN_ID" \
+            --repo "${{ github.repository }}" \
+            --name CalculatriceGPT-debug \
+            --dir release-apk
+
+          APK=$(find release-apk -type f -name '*.apk' | head -n 1)
+          if [ -z "$APK" ]; then
+            echo "::error::Validated APK artifact was not found"
+            exit 1
+          fi
+          cp "$APK" app-debug.apk
+
+      - name: Extract changelog section
+        id: changelog
+        shell: bash
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          awk -v version="$VERSION" '
+            $0 ~ "^## \\[" version "\\]" { found=1; next }
+            found && /^## \[/ { exit }
+            found { print }
+          ' CHANGELOG.md > release-notes.md
+
+          if [ ! -s release-notes.md ]; then
+            echo "::error::No CHANGELOG.md section found for version $VERSION"
+            exit 1
+          fi
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          gh release create "$TAG" \
+            app-debug.apk \
+            --title "CalculatriceGPT $TAG" \
+            --notes-file release-notes.md \
+            --target "${{ github.event.workflow_run.head_sha }}"
+
+          if [[ ! "$VERSION" =~ $SEMVER_REGEX ]]; then
+            echo "::error::versionName '$VERSION' is not valid SemVer 2.0.0"
+            echo "::error::Expected MAJOR.MINOR.PATCH[-prerelease][+build], for example 1.0.0 or 1.2.0-rc.1"
+            exit 1
+          fi
+
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
 
