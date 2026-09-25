@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Documentation
+
+- Added developer documentation covering architecture, development workflow, CI/CD, SemVer, releases, and documentation maintenance.
+
 ### Added
 
 - Added an application title banner.
