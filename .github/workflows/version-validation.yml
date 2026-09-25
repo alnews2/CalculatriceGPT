@@ -75,6 +75,7 @@ jobs:
               ".github/workflows/android.yml",
               ".github/workflows/release.yml",
               ".github/workflows/version-validation.yml",
+              "scripts/bump_version.py",
           }
           code_change = any(
               path not in allowed_without_bump
