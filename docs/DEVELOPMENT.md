@@ -31,7 +31,7 @@ La zone Résultat est pilotée par l'état `display` dans le composable principa
 
 Les touches numériques utilisent une couleur dédiée afin de les distinguer visuellement des commandes et opérateurs. Les touches non numériques utilisent une forme carrée.
 
-Le bandeau supérieur affiche « CalculatriceGPT » en haut à gauche avec le style `titleMedium`. À droite, un `IconButton` représenté par trois points verticaux (`⋮`) ouvre le menu **Overflow**.
+Le bandeau supérieur est limité au titre « CalculatriceGPT », affiché en haut à gauche avec le style `titleMedium`. À droite, hors du bandeau mais sur la même ligne, un `IconButton` représenté par trois points verticaux (`⋮`) ouvre le menu **Overflow**.
 
 Le menu **Overflow** contient :
 
