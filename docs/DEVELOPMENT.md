@@ -25,13 +25,17 @@ CalculatriceGPT est une application Android native de calculatrice à quatre op�
 - `CHANGELOG.md` : historique.
 - `docs/DEVELOPMENT.md` : documentation développeur.
 
-## 4. Interface, touches et presse-papier
+## 4. Interface, responsive et presse-papier
 
 La zone Résultat est pilotée par l'état `display` dans le composable principal.
 
-Les touches numériques utilisent une couleur dédiée afin de les distinguer visuellement des commandes et opérateurs. Les touches non numériques utilisent une forme carrée.
+L'interface est organisée en composants réutilisables :
 
-Le bandeau supérieur est limité au titre « CalculatriceGPT », affiché en haut à gauche avec le style `titleMedium`. À droite, hors du bandeau mais sur la même ligne, un `IconButton` représenté par trois points verticaux (`⋮`) ouvre le menu **Overflow**. Le bouton est légèrement remonté et placé sur un fond grisé afin de rendre son caractère interactif plus visible.
+- `CalculatorHeader` : titre et menu Overflow ;
+- `ResultDisplay` : zone noire d'affichage ;
+- `CalculatorKeypad` : clavier des quatre rangées de touches.
+
+Le bandeau supérieur est limité au titre « CalculatriceGPT », affiché en haut à gauche avec le style `titleMedium`. À droite, hors du bandeau mais sur la même ligne, un bouton représenté par trois points verticaux (`⋮`) ouvre le menu **Overflow**. Le bouton est légèrement remonté et placé sur un fond grisé.
 
 Le menu **Overflow** contient :
 
@@ -39,7 +43,29 @@ Le menu **Overflow** contient :
 - **Coller** : lit le texte du presse-papier et remplace entièrement le contenu de Résultat ;
 - **Quitter** : ferme l'activité de l'application.
 
-Après un collage, les valeurs d'opération en cours sont réinitialisées afin que le texte collé constitue le nouvel affichage de départ. Si aucun texte n'est disponible, l'affichage revient à `0`.
+L'orientation est détectée avec la configuration Compose courante.
+
+### Portrait
+
+La présentation verticale historique est conservée :
+
+1. en-tête ;
+2. zone Résultat ;
+3. clavier sur quatre rangées ;
+4. pied de fenêtre.
+
+### Paysage
+
+La zone principale est réorganisée horizontalement :
+
+- zone Résultat à gauche ;
+- clavier à droite ;
+- espacements et marges réduits pour tenir compte de la hauteur disponible ;
+- taille de police du résultat réduite lorsque la valeur affichée devient longue.
+
+Le clavier conserve quatre rangées et quatre colonnes. Les touches utilisent des poids Compose afin de répartir automatiquement l'espace disponible.
+
+Cette organisation évite de faire dépendre le clavier d'une hauteur fixe et permet à l'interface de rester exploitable lorsque la hauteur de l'écran diminue en paysage.
 
 ## 5. Développement local
 
@@ -49,6 +75,16 @@ Depuis la racine :
     gradle assembleDebug
 
 Une modification métier doit être accompagnée des tests correspondants.
+
+Pour une modification d'interface responsive, vérifier au minimum :
+
+- portrait ;
+- paysage ;
+- petit écran en paysage ;
+- rotation portrait ↔ paysage ;
+- affichage d'un résultat long ;
+- fonctionnement du menu Overflow ;
+- fonctionnement des quatre opérations.
 
 ## 6. CI GitHub Actions
 
