@@ -2,6 +2,21 @@
 
 ## [À venir]
 
+## [0.4.0] - 2026-09-26
+
+### Ajouté
+
+- Différenciation visuelle des touches numériques par une couleur dédiée.
+- Forme carrée pour les touches non numériques afin de distinguer les commandes et les opérateurs.
+
+### Modifié
+
+- Centrage du titre « CalculatriceGPT » dans son bandeau.
+
+### Documentation
+
+- Mise à jour du README.md pour décrire les évolutions de l'interface.
+
 ## [0.3.0] - 2026-09-26
 
 ### Ajouté
