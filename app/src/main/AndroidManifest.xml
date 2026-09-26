@@ -3,6 +3,7 @@
     <application
         android:theme="@style/Theme.CalculatriceGPT"
         android:label="CalculatriceGPT"
+        android:icon="@drawable/ic_launcher"
         android:allowBackup="true"
         android:supportsRtl="true">
         <activity android:name=".MainActivity" android:exported="true">

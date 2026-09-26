@@ -11,8 +11,8 @@ android {
         applicationId = "fr.alnews2.calculatricegpt"
         minSdk = 28
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.6.0"
+        versionCode = 2
+        versionName = "0.6.1"
     }
 
     buildFeatures {
