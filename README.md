@@ -12,7 +12,9 @@ Application Android native de calculatrice à quatre opérations.
 
 Calculatrice Android native développée en Kotlin et Jetpack Compose.
 
-**Dernière version publiée : 0.2.0**
+**Version préparée : 0.3.0**
+
+La version 0.3.0 ajoute un menu « Édition » avec les commandes « Copier » et « Coller » pour le contenu de la zone Résultat.
 
 La version 0.2.0 apporte l'affichage du résultat avec texte blanc sur fond noir et un pied de fenêtre en italique indiquant que l'application a été générée par une intelligence artificielle ChatGPT.
 
@@ -35,6 +37,7 @@ La version 0.2.0 apporte l'affichage du résultat avec texte blanc sur fond noir
 - effacement
 - affichage du résultat
 - affichage du résultat dans une zone noire avec texte blanc
+- menu « Édition » avec commandes « Copier » et « Coller »
 - gestion de la division par zéro
 - interface avec bandeau de titre et bouton de fermeture
 - marge d'environ 5 mm autour des éléments principaux
