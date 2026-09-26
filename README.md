@@ -53,9 +53,10 @@ Les quatre opérations et la division par zéro disposent de tests unitaires.
 
 GitHub Actions exécute les tests Gradle, valide la politique de version SemVer sur les PR et produit un APK debug téléchargeable comme artefact.
 
-## Documentation développeur
+## Documentation
 
-Voir [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) pour l'architecture, les commandes, les tests, la CI/CD, le workflow Git/PR, SemVer, les releases et la maintenance documentaire.
+- [Documentation développeur](docs/DEVELOPMENT.md) : architecture, commandes, tests, CI/CD, workflow Git/PR, SemVer, releases et maintenance documentaire.
+- [Journal des modifications (CHANGELOG.md)](CHANGELOG.md) : historique détaillé des fonctionnalités, corrections et évolutions du projet.
 
 ## Cycle de maintenance documentaire
 
