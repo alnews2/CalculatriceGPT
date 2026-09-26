@@ -77,45 +77,70 @@ private fun CalculatorScreen() {
                     .padding(19.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Box(modifier = Modifier.fillMaxWidth()) {
-                    TextButton(onClick = { editMenuExpanded = true }) {
-                        Text("Édition")
-                    }
-
-                    DropdownMenu(
-                        expanded = editMenuExpanded,
-                        onDismissRequest = { editMenuExpanded = false }
-                    ) {
-                        DropdownMenuItem(
-                            text = { Text("Copier") },
-                            onClick = {
-                                copyResult()
-                                editMenuExpanded = false
-                            }
-                        )
-                        DropdownMenuItem(
-                            text = { Text("Coller") },
-                            onClick = {
-                                pasteResult()
-                                editMenuExpanded = false
-                            }
-                        )
-                    }
-                }
-
-                Surface(
+                Row(
                     modifier = Modifier.fillMaxWidth(),
-                    color = MaterialTheme.colorScheme.primaryContainer,
-                    tonalElevation = 2.dp,
-                    shape = MaterialTheme.shapes.medium
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "CalculatriceGPT",
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
-                        style = MaterialTheme.typography.titleLarge,
-                        textAlign = TextAlign.Center
-                    )
-                }
+                    Surface(
+                        color = MaterialTheme.colorScheme.primaryContainer,
+                        tonalElevation = 2.dp,
+                        shape = MaterialTheme.shapes.medium
+                    ) {
+                        Text(
+                            text = "CalculatriceGPT",
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    Box(
+                        modifier = Modifier
+                            .wrapContentSize(Alignment.TopEnd)
+                            .offset(y = (-3).dp)
+                    ) {
+                        Surface(
+                            color = MaterialTheme.colorScheme.surfaceVariant,
+                            shape = MaterialTheme.shapes.small,
+                            tonalElevation = 2.dp
+                        ) {
+                            IconButton(onClick = { editMenuExpanded = true }) {
+                                Text(
+                                    text = "⋮",
+                                    style = MaterialTheme.typography.titleLarge,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                        }
+
+                        DropdownMenu(
+                            expanded = editMenuExpanded,
+                            onDismissRequest = { editMenuExpanded = false }
+                        ) {
+                            DropdownMenuItem(
+                                text = { Text("Copier") },
+                                onClick = {
+                                    copyResult()
+                                    editMenuExpanded = false
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = { Text("Coller") },
+                                onClick = {
+                                    pasteResult()
+                                    editMenuExpanded = false
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = { Text("Quitter") },
+                                onClick = {
+                                    editMenuExpanded = false
+                                    activity?.finish()
+                                }
+                            )
+                        }
+                    }                }
 
                 Surface(
                     modifier = Modifier
@@ -179,13 +204,6 @@ private fun CalculatorScreen() {
                             }
                         }
                     }
-                }
-
-                OutlinedButton(
-                    onClick = { activity?.finish() },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text("Quitter")
                 }
 
                 Text(
