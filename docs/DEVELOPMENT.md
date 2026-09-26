@@ -31,9 +31,9 @@ La zone Résultat est pilotée par l'état `display` dans le composable principa
 
 Les touches numériques utilisent une couleur dédiée afin de les distinguer visuellement des commandes et opérateurs. Les touches non numériques utilisent une forme carrée.
 
-Le bandeau de titre « CalculatriceGPT » utilise toute la largeur disponible et centre le titre.
+Le bandeau supérieur affiche « CalculatriceGPT » en haut à gauche avec le style `titleMedium`. À droite, un `IconButton` représenté par trois points verticaux (`⋮`) ouvre le menu **Overflow**.
 
-Le menu **Édition** contient :
+Le menu **Overflow** contient :
 
 - **Copier** : place exactement le contenu actuellement affiché dans Résultat dans le presse-papier ;
 - **Coller** : lit le texte du presse-papier et remplace entièrement le contenu de Résultat.
