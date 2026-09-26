@@ -77,44 +77,55 @@ private fun CalculatorScreen() {
                     .padding(19.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Box(modifier = Modifier.fillMaxWidth()) {
-                    TextButton(onClick = { editMenuExpanded = true }) {
-                        Text("Édition")
-                    }
-
-                    DropdownMenu(
-                        expanded = editMenuExpanded,
-                        onDismissRequest = { editMenuExpanded = false }
-                    ) {
-                        DropdownMenuItem(
-                            text = { Text("Copier") },
-                            onClick = {
-                                copyResult()
-                                editMenuExpanded = false
-                            }
-                        )
-                        DropdownMenuItem(
-                            text = { Text("Coller") },
-                            onClick = {
-                                pasteResult()
-                                editMenuExpanded = false
-                            }
-                        )
-                    }
-                }
-
                 Surface(
                     modifier = Modifier.fillMaxWidth(),
                     color = MaterialTheme.colorScheme.primaryContainer,
                     tonalElevation = 2.dp,
                     shape = MaterialTheme.shapes.medium
                 ) {
-                    Text(
-                        text = "CalculatriceGPT",
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
-                        style = MaterialTheme.typography.titleLarge,
-                        textAlign = TextAlign.Center
-                    )
+                    Box(modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            text = "CalculatriceGPT",
+                            modifier = Modifier
+                                .align(Alignment.CenterStart)
+                                .padding(start = 12.dp, top = 6.dp, bottom = 6.dp),
+                            style = MaterialTheme.typography.titleMedium
+                        )
+
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.CenterEnd)
+                                .wrapContentSize(Alignment.TopEnd)
+                        ) {
+                            IconButton(onClick = { editMenuExpanded = true }) {
+                                Text(
+                                    text = "⋮",
+                                    style = MaterialTheme.typography.titleLarge,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+
+                            DropdownMenu(
+                                expanded = editMenuExpanded,
+                                onDismissRequest = { editMenuExpanded = false }
+                            ) {
+                                DropdownMenuItem(
+                                    text = { Text("Copier") },
+                                    onClick = {
+                                        copyResult()
+                                        editMenuExpanded = false
+                                    }
+                                )
+                                DropdownMenuItem(
+                                    text = { Text("Coller") },
+                                    onClick = {
+                                        pasteResult()
+                                        editMenuExpanded = false
+                                    }
+                                )
+                            }
+                        }
+                    }
                 }
 
                 Surface(
