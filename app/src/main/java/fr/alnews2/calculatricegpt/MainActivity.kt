@@ -96,14 +96,22 @@ private fun CalculatorScreen() {
                     Spacer(modifier = Modifier.weight(1f))
 
                     Box(
-                        modifier = Modifier.wrapContentSize(Alignment.TopEnd)
+                        modifier = Modifier
+                            .wrapContentSize(Alignment.TopEnd)
+                            .offset(y = (-3).dp)
                     ) {
-                        IconButton(onClick = { editMenuExpanded = true }) {
-                            Text(
-                                text = "⋮",
-                                style = MaterialTheme.typography.titleLarge,
-                                textAlign = TextAlign.Center
-                            )
+                        Surface(
+                            color = MaterialTheme.colorScheme.surfaceVariant,
+                            shape = MaterialTheme.shapes.small,
+                            tonalElevation = 2.dp
+                        ) {
+                            IconButton(onClick = { editMenuExpanded = true }) {
+                                Text(
+                                    text = "⋮",
+                                    style = MaterialTheme.typography.titleLarge,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
                         }
 
                         DropdownMenu(
@@ -124,9 +132,15 @@ private fun CalculatorScreen() {
                                     editMenuExpanded = false
                                 }
                             )
+                            DropdownMenuItem(
+                                text = { Text("Quitter") },
+                                onClick = {
+                                    editMenuExpanded = false
+                                    activity?.finish()
+                                }
+                            )
                         }
-                    }
-                }
+                    }                }
 
                 Surface(
                     modifier = Modifier
@@ -190,13 +204,6 @@ private fun CalculatorScreen() {
                             }
                         }
                     }
-                }
-
-                OutlinedButton(
-                    onClick = { activity?.finish() },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text("Quitter")
                 }
 
                 Text(
