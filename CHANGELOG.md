@@ -2,6 +2,18 @@
 
 ## [À venir]
 
+## [0.6.1] - 2026-09-26
+
+### Ajouté
+
+- Nouvelle icône d'application représentant explicitement une calculatrice.
+
+### Modifié
+
+- Nom du fichier APK généré : `CalculatriceGPT.apk`.
+- Numéro de version de l'application porté à 0.6.1.
+
+
 ## [0.6.0] - 2026-09-26
 
 ### Ajouté
