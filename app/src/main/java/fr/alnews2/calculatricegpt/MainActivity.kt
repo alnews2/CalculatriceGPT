@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RectangleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -14,6 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import fr.alnews2.calculatricegpt.domain.Calculator
 import fr.alnews2.calculatricegpt.domain.Operation
@@ -110,8 +112,9 @@ private fun CalculatorScreen() {
                 ) {
                     Text(
                         text = "CalculatriceGPT",
-                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
-                        style = MaterialTheme.typography.titleLarge
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
+                        style = MaterialTheme.typography.titleLarge,
+                        textAlign = TextAlign.Center
                     )
                 }
 
@@ -147,6 +150,16 @@ private fun CalculatorScreen() {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         row.forEach { label ->
+                            val isDigit = label.length == 1 && label[0].isDigit()
+                            val buttonColors = if (isDigit) {
+                                ButtonDefaults.buttonColors(
+                                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                                    contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                                )
+                            } else {
+                                ButtonDefaults.buttonColors()
+                            }
+
                             Button(
                                 onClick = {
                                     when (label) {
@@ -159,8 +172,12 @@ private fun CalculatorScreen() {
                                         else -> input(label)
                                     }
                                 },
-                                modifier = Modifier.weight(1f)
-                            ) { Text(label) }
+                                modifier = Modifier.weight(1f),
+                                shape = if (isDigit) MaterialTheme.shapes.medium else RectangleShape,
+                                colors = buttonColors
+                            ) {
+                                Text(label)
+                            }
                         }
                     }
                 }
@@ -176,7 +193,7 @@ private fun CalculatorScreen() {
                     text = "application générée par une intelligence artificielle ChatGPT",
                     modifier = Modifier.fillMaxWidth(),
                     style = MaterialTheme.typography.bodySmall.copy(fontStyle = FontStyle.Italic),
-                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                    textAlign = TextAlign.Center
                 )
             }
         }
