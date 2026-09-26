@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalClipboardManager
@@ -31,10 +32,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun CalculatorScreen() {
-    var display by remember { mutableStateOf("0") }
-    var storedValue by remember { mutableStateOf<Double?>(null) }
-    var pendingOperation by remember { mutableStateOf<Operation?>(null) }
-    var enteringNumber by remember { mutableStateOf(false) }
+    var display by rememberSaveable { mutableStateOf("0") }
+    var storedValue by rememberSaveable { mutableStateOf<Double?>(null) }
+    var pendingOperation by rememberSaveable { mutableStateOf<Operation?>(null) }
+    var enteringNumber by rememberSaveable { mutableStateOf(false) }
     var editMenuExpanded by remember { mutableStateOf(false) }
     val clipboardManager = LocalClipboardManager.current
     val activity = LocalContext.current as? Activity
