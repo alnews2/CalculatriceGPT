@@ -12,7 +12,9 @@ Application Android native de calculatrice à quatre opérations.
 
 Calculatrice Android native développée en Kotlin et Jetpack Compose.
 
-**Version préparée : 0.5.0**
+**Version préparée : 0.6.0**
+
+La version 0.6.0 rend l'interface responsive : en portrait, la présentation verticale est conservée ; en paysage, l'affichage du résultat et le clavier sont répartis horizontalement pour utiliser efficacement la largeur disponible. Les marges et espacements sont réduits en paysage et la taille du résultat s'adapte aux valeurs longues.
 
 La version 0.5.0 améliore la convention d’interface Android : le titre « CalculatriceGPT » est placé en haut à gauche dans un bandeau limité au titre ; le menu « Overflow » à trois points verticaux, placé à droite sur la même ligne, est légèrement remonté et mis en évidence par un fond grisé. Il contient les commandes « Copier », « Coller » et « Quitter ».
 
@@ -43,11 +45,14 @@ La version 0.2.0 apporte l'affichage du résultat avec texte blanc sur fond noir
 - affichage du résultat dans une zone noire avec texte blanc
 - touches numériques avec une couleur dédiée
 - touches non numériques de forme carrée
+- interface responsive en portrait et en paysage
+- affichage du résultat à gauche et clavier à droite en paysage
+- adaptation de la taille du résultat aux valeurs longues en paysage
 - menu « Overflow » à trois points verticaux avec commandes « Copier », « Coller » et « Quitter »
 - gestion de la division par zéro
 - interface avec titre en haut à gauche et menu « Overflow » à droite
 - fermeture de l'application depuis le menu « Overflow »
-- marge d'environ 5 mm autour des éléments principaux
+- marge d'environ 5 mm autour des éléments principaux en portrait
 - pied de fenêtre centré en italique
 
 La logique de calcul est séparée de l'interface afin de permettre son évolution sans coupler le moteur de calcul à Compose.
@@ -55,6 +60,8 @@ La logique de calcul est séparée de l'interface afin de permettre son évoluti
 ## Tests
 
 Les quatre opérations et la division par zéro disposent de tests unitaires.
+
+Pour cette évolution d'interface, la validation fonctionnelle doit notamment couvrir le portrait, le paysage, les petits écrans en paysage et l'affichage de valeurs longues.
 
 ## CI
 
