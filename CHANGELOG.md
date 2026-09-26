@@ -6,6 +6,7 @@
 
 ### Ajouté
 
+- Conservation de la valeur affichée et de l’état de l’opération en cours lors du passage du portrait au paysage et inversement.
 - Adaptation responsive de l'interface pour le mode paysage.
 - Réorganisation du mode paysage en deux zones : affichage du résultat à gauche et clavier numérique à droite.
 
