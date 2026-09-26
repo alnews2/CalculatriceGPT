@@ -2,6 +2,20 @@
 
 ## [À venir]
 
+## [0.6.0] - 2026-09-26
+
+### Ajouté
+
+- Adaptation responsive de l'interface pour le mode paysage.
+- Réorganisation du mode paysage en deux zones : affichage du résultat à gauche et clavier numérique à droite.
+
+### Modifié
+
+- Conservation de la présentation verticale existante en mode portrait.
+- Réduction des marges et espacements en mode paysage pour exploiter l'espace disponible.
+- Réduction adaptative de la taille du résultat en paysage lorsque le nombre affiché devient long.
+- Factorisation de l'en-tête, de la zone de résultat et du clavier afin de conserver le même comportement fonctionnel dans les deux orientations.
+
 ## [0.5.0] - 2026-09-26
 
 ### Modifié
