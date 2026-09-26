@@ -12,7 +12,9 @@ Application Android native de calculatrice à quatre opérations.
 
 Calculatrice Android native développée en Kotlin et Jetpack Compose.
 
-**Version préparée : 0.4.0**
+**Version préparée : 0.5.0**
+
+La version 0.5.0 améliore la convention d’interface Android : le titre « CalculatriceGPT » est placé en haut à gauche avec une taille légèrement réduite et les commandes « Copier » et « Coller » sont accessibles depuis un menu « Overflow » à trois points verticaux.
 
 La version 0.4.0 améliore la lisibilité de l'interface : les touches numériques utilisent une couleur dédiée, les touches non numériques sont carrées et le titre « CalculatriceGPT » est centré.
 
@@ -41,9 +43,9 @@ La version 0.2.0 apporte l'affichage du résultat avec texte blanc sur fond noir
 - affichage du résultat dans une zone noire avec texte blanc
 - touches numériques avec une couleur dédiée
 - touches non numériques de forme carrée
-- menu « Édition » avec commandes « Copier » et « Coller »
+- menu « Overflow » à trois points verticaux avec commandes « Copier » et « Coller »
 - gestion de la division par zéro
-- interface avec bandeau de titre centré et bouton de fermeture
+- interface avec titre en haut à gauche, menu « Overflow » à droite et bouton de fermeture
 - marge d'environ 5 mm autour des éléments principaux
 - pied de fenêtre centré en italique
 
