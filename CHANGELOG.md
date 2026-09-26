@@ -2,6 +2,14 @@
 
 ## [À venir]
 
+## [0.5.0] - 2026-09-26
+
+### Modifié
+
+- Placement du titre « CalculatriceGPT » en haut à gauche avec une taille de police légèrement réduite.
+- Remplacement du bouton « Édition » par un menu « Overflow » représenté par trois points verticaux, avec les commandes « Copier » et « Coller ».
+
+
 ## [0.4.0] - 2026-09-26
 
 ### Ajouté
