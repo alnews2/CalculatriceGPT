@@ -9,8 +9,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import fr.alnews2.calculatricegpt.domain.Calculator
@@ -29,6 +31,8 @@ private fun CalculatorScreen() {
     var storedValue by remember { mutableStateOf<Double?>(null) }
     var pendingOperation by remember { mutableStateOf<Operation?>(null) }
     var enteringNumber by remember { mutableStateOf(false) }
+    var editMenuExpanded by remember { mutableStateOf(false) }
+    val clipboardManager = LocalClipboardManager.current
     val activity = LocalContext.current as? Activity
 
     fun input(value: String) {
@@ -53,6 +57,16 @@ private fun CalculatorScreen() {
         )
         storedValue = null; pendingOperation = null; enteringNumber = false
     }
+    fun copyResult() {
+        clipboardManager.setText(AnnotatedString(display))
+    }
+    fun pasteResult() {
+        val pastedText = clipboardManager.getText()?.text.orEmpty()
+        display = pastedText.ifEmpty { "0" }
+        storedValue = null
+        pendingOperation = null
+        enteringNumber = pastedText.isNotEmpty()
+    }
 
     MaterialTheme {
         Surface(Modifier.fillMaxSize()) {
@@ -62,6 +76,32 @@ private fun CalculatorScreen() {
                     .padding(19.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
+                Box(modifier = Modifier.fillMaxWidth()) {
+                    TextButton(onClick = { editMenuExpanded = true }) {
+                        Text("Édition")
+                    }
+
+                    DropdownMenu(
+                        expanded = editMenuExpanded,
+                        onDismissRequest = { editMenuExpanded = false }
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text("Copier") },
+                            onClick = {
+                                copyResult()
+                                editMenuExpanded = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("Coller") },
+                            onClick = {
+                                pasteResult()
+                                editMenuExpanded = false
+                            }
+                        )
+                    }
+                }
+
                 Surface(
                     modifier = Modifier.fillMaxWidth(),
                     color = MaterialTheme.colorScheme.primaryContainer,
