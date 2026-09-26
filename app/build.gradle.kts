@@ -15,12 +15,6 @@ android {
         versionName = "0.6.1"
     }
 
-    applicationVariants.all {
-        outputs.all {
-            outputFileName = "CalculatriceGPT.apk"
-        }
-    }
-
     buildFeatures {
         compose = true
     }
