@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RectangleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -173,7 +172,7 @@ private fun CalculatorScreen() {
                                     }
                                 },
                                 modifier = Modifier.weight(1f),
-                                shape = if (isDigit) MaterialTheme.shapes.medium else RectangleShape,
+                                shape = if (isDigit) MaterialTheme.shapes.medium else MaterialTheme.shapes.small,
                                 colors = buttonColors
                             ) {
                                 Text(label)
