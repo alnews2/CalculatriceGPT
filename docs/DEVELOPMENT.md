@@ -25,9 +25,13 @@ CalculatriceGPT est une application Android native de calculatrice à quatre op�
 - `CHANGELOG.md` : historique.
 - `docs/DEVELOPMENT.md` : documentation développeur.
 
-## 4. Interface et presse-papier
+## 4. Interface, touches et presse-papier
 
 La zone Résultat est pilotée par l'état `display` dans le composable principal.
+
+Les touches numériques utilisent une couleur dédiée afin de les distinguer visuellement des commandes et opérateurs. Les touches non numériques utilisent une forme carrée.
+
+Le bandeau de titre « CalculatriceGPT » utilise toute la largeur disponible et centre le titre.
 
 Le menu **Édition** contient :
 
