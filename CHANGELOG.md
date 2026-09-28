@@ -2,6 +2,10 @@
 
 ## [À venir]
 
+### Modifié
+
+- Réduction de la hauteur de la zone d'affichage du résultat en mode portrait, pour la rapprocher de la hauteur du texte affiché.
+
 ## [0.6.1] - 2026-09-26
 
 ### Ajouté
