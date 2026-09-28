@@ -278,7 +278,7 @@ private fun ResultDisplay(
                 text = display,
                 modifier = Modifier.fillMaxWidth(),
                 color = Color.White,
-                style = resultTextStyle,
+                style = resultTextStyle.copy(fontStyle = FontStyle.Italic),
                 maxLines = 1,
                 softWrap = false,
                 overflow = TextOverflow.Clip,
