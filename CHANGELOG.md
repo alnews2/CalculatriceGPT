@@ -6,7 +6,7 @@
 
 ### Modifié
 
-- Réduction de la hauteur de la zone d'affichage du résultat en mode portrait, pour la rapprocher de la hauteur du texte affiché.
+- Réduction de la hauteur de la zone d'affichage du résultat en mode paysage, pour la rapprocher de la hauteur du texte affiché.
 
 
 ### Modifié
