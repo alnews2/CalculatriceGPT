@@ -8,6 +8,8 @@
 
 - Réduction de la hauteur de la zone d'affichage du résultat en mode paysage, pour la rapprocher de la hauteur du texte affiché.
 - Affichage du résultat en italique.
+- Agrandissement des touches de la calculatrice en portrait et en paysage, avec réduction des espacements entre les touches.
+- Ajout d'une fine bordure noire autour de chaque touche.
 
 
 ### Modifié
