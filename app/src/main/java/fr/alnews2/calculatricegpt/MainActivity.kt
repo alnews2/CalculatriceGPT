@@ -150,7 +150,7 @@ private fun CalculatorScreen() {
                         display = display,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .weight(1f),
+                            .height(72.dp),
                         landscape = false
                     )
                     CalculatorKeypad(
