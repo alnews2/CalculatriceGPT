@@ -315,16 +315,11 @@ private fun CalculatorKeypad(
                 horizontalArrangement = Arrangement.spacedBy(rowSpacing),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                row.forEach { label ->
-                    val isDigit = label.length == 1 && label[0].isDigit()
-                    val buttonColors = if (isDigit) {
-                        ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                            contentColor = MaterialTheme.colorScheme.onSecondaryContainer
-                        )
-                    } else {
-                        ButtonDefaults.buttonColors()
-                    }
+                row.take(3).forEach { label ->
+                    val buttonColors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                    )
 
                     Button(
                         onClick = { onKeyPressed(label) },
@@ -332,11 +327,7 @@ private fun CalculatorKeypad(
                             .weight(1f)
                             .fillMaxHeight(),
                         border = BorderStroke(1.dp, Color.Black),
-                        shape = if (isDigit) {
-                            MaterialTheme.shapes.medium
-                        } else {
-                            MaterialTheme.shapes.small
-                        },
+                        shape = MaterialTheme.shapes.medium,
                         colors = buttonColors
                     ) {
                         Text(
@@ -344,6 +335,24 @@ private fun CalculatorKeypad(
                             style = MaterialTheme.typography.titleLarge
                         )
                     }
+                }
+
+                Spacer(modifier = Modifier.width(rowSpacing * 3))
+
+                val operator = row[3]
+                Button(
+                    onClick = { onKeyPressed(operator) },
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight(),
+                    border = BorderStroke(1.dp, Color.Black),
+                    shape = MaterialTheme.shapes.small,
+                    colors = ButtonDefaults.buttonColors()
+                ) {
+                    Text(
+                        text = operator,
+                        style = MaterialTheme.typography.titleLarge
+                    )
                 }
             }
         }
