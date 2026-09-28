@@ -345,8 +345,7 @@ private fun CalculatorKeypad(
                         onClick = { onKeyPressed(label) },
                         modifier = Modifier
                             .weight(1f)
-                            .fillMaxHeight()
-                            .padding(vertical = rowSpacing),
+                            .fillMaxHeight(),
                         border = BorderStroke(1.dp, Color.Black),
                         shape = MaterialTheme.shapes.small,
                         colors = ButtonDefaults.buttonColors()
