@@ -13,7 +13,6 @@
 - Augmentation de la taille de police des libellés des touches.
 - Augmentation de l'espace entre les touches numériques et le groupe des commandes non numériques, en portrait comme en paysage.
 - Regroupement des touches « C » et « = » avec les touches d'opération, en conservant leur même couleur.
-- Réduction de la hauteur des touches du groupe des commandes de deux fois l'espacement entre les touches numériques.
 
 
 ### Modifié
