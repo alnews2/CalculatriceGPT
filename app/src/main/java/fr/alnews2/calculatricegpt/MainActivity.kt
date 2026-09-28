@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -294,7 +295,7 @@ private fun CalculatorKeypad(
     onKeyPressed: (String) -> Unit,
     landscape: Boolean
 ) {
-    val rowSpacing = if (landscape) 5.dp else 8.dp
+    val rowSpacing = if (landscape) 4.dp else 6.dp
     val rows = listOf(
         listOf("7", "8", "9", "÷"),
         listOf("4", "5", "6", "×"),
@@ -327,7 +328,13 @@ private fun CalculatorKeypad(
 
                     Button(
                         onClick = { onKeyPressed(label) },
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .weight(1f)
+                            .border(1.dp, Color.Black, if (isDigit) {
+                                MaterialTheme.shapes.medium
+                            } else {
+                                MaterialTheme.shapes.small
+                            }),
                         shape = if (isDigit) {
                             MaterialTheme.shapes.medium
                         } else {
