@@ -7,6 +7,7 @@
 ### Modifié
 
 - Réduction de la hauteur de la zone d'affichage du résultat en mode paysage, pour la rapprocher de la hauteur du texte affiché.
+- Affichage du résultat en italique.
 
 
 ### Modifié
