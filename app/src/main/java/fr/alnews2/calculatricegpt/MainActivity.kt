@@ -341,11 +341,19 @@ private fun CalculatorKeypad(
                 Spacer(modifier = Modifier.width(rowSpacing * 3))
 
                 row.drop(numericCount).forEach { label ->
+                    val verticalModifier = when (label) {
+                        "C", "=", "+" -> Modifier
+                            .fillMaxHeight()
+                            .padding(top = 24.dp)
+                        else -> Modifier
+                            .fillMaxHeight()
+                            .padding(vertical = 12.dp)
+                    }
+
                     Button(
                         onClick = { onKeyPressed(label) },
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxHeight(),
+                        modifier = verticalModifier
+                            .weight(1f),
                         border = BorderStroke(1.dp, Color.Black),
                         shape = MaterialTheme.shapes.small,
                         colors = ButtonDefaults.buttonColors()
