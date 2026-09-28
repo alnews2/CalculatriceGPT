@@ -339,7 +339,10 @@ private fun CalculatorKeypad(
                         },
                         colors = buttonColors
                     ) {
-                        Text(label)
+                        Text(
+                            text = label,
+                            style = MaterialTheme.typography.titleLarge
+                        )
                     }
                 }
             }
