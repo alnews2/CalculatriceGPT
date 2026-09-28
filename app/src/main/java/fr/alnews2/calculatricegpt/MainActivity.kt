@@ -5,7 +5,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.border
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -330,11 +330,8 @@ private fun CalculatorKeypad(
                         onClick = { onKeyPressed(label) },
                         modifier = Modifier
                             .weight(1f)
-                            .border(1.dp, Color.Black, if (isDigit) {
-                                MaterialTheme.shapes.medium
-                            } else {
-                                MaterialTheme.shapes.small
-                            }),
+                            .fillMaxHeight(),
+                        border = BorderStroke(1.dp, Color.Black),
                         shape = if (isDigit) {
                             MaterialTheme.shapes.medium
                         } else {
