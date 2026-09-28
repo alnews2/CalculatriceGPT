@@ -315,7 +315,8 @@ private fun CalculatorKeypad(
                 horizontalArrangement = Arrangement.spacedBy(rowSpacing),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                row.take(3).forEach { label ->
+                val numericCount = if (row[1] == "C") 1 else 3
+                row.take(numericCount).forEach { label ->
                     val buttonColors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.secondaryContainer,
                         contentColor = MaterialTheme.colorScheme.onSecondaryContainer
@@ -339,20 +340,21 @@ private fun CalculatorKeypad(
 
                 Spacer(modifier = Modifier.width(rowSpacing * 3))
 
-                val operator = row[3]
-                Button(
-                    onClick = { onKeyPressed(operator) },
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxHeight(),
-                    border = BorderStroke(1.dp, Color.Black),
-                    shape = MaterialTheme.shapes.small,
-                    colors = ButtonDefaults.buttonColors()
-                ) {
-                    Text(
-                        text = operator,
-                        style = MaterialTheme.typography.titleLarge
-                    )
+                row.drop(numericCount).forEach { label ->
+                    Button(
+                        onClick = { onKeyPressed(label) },
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight(),
+                        border = BorderStroke(1.dp, Color.Black),
+                        shape = MaterialTheme.shapes.small,
+                        colors = ButtonDefaults.buttonColors()
+                    ) {
+                        Text(
+                            text = label,
+                            style = MaterialTheme.typography.titleLarge
+                        )
+                    }
                 }
             }
         }
