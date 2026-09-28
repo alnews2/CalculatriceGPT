@@ -10,6 +10,7 @@
 - Affichage du résultat en italique.
 - Agrandissement des touches de la calculatrice en portrait et en paysage, avec réduction des espacements entre les touches.
 - Ajout d'une fine bordure noire autour de chaque touche.
+- Augmentation de la taille de police des libellés des touches.
 
 
 ### Modifié
