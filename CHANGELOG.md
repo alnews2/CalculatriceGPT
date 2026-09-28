@@ -13,7 +13,7 @@
 - Augmentation de la taille de police des libellés des touches.
 - Augmentation de l'espace entre les touches numériques et le groupe des commandes non numériques, en portrait comme en paysage.
 - Regroupement des touches « C » et « = » avec les touches d'opération, en conservant leur même couleur.
-
+- Réduction de 24 dp de la hauteur des touches du groupe des commandes ; « C », « = » et « + » sont alignées sur le bas de leur ligne, tandis que « ÷ », « × » et « − » restent centrées verticalement.
 
 ### Modifié
 
