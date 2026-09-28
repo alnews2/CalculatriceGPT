@@ -130,13 +130,20 @@ private fun CalculatorScreen() {
                             .weight(1f),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        ResultDisplay(
-                            display = display,
+                        Box(
                             modifier = Modifier
                                 .weight(0.8f)
                                 .fillMaxHeight(),
-                            landscape = true
-                        )
+                            contentAlignment = Alignment.Center
+                        ) {
+                            ResultDisplay(
+                                display = display,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(72.dp),
+                                landscape = true
+                            )
+                        }
                         CalculatorKeypad(
                             modifier = Modifier
                                 .weight(1.2f)
