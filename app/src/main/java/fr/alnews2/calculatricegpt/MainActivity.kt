@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -130,13 +131,20 @@ private fun CalculatorScreen() {
                             .weight(1f),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        ResultDisplay(
-                            display = display,
+                        Box(
                             modifier = Modifier
                                 .weight(0.8f)
                                 .fillMaxHeight(),
-                            landscape = true
-                        )
+                            contentAlignment = Alignment.Center
+                        ) {
+                            ResultDisplay(
+                                display = display,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(72.dp),
+                                landscape = true
+                            )
+                        }
                         CalculatorKeypad(
                             modifier = Modifier
                                 .weight(1.2f)
@@ -150,7 +158,7 @@ private fun CalculatorScreen() {
                         display = display,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .weight(1f),
+                            .height(72.dp),
                         landscape = false
                     )
                     CalculatorKeypad(
@@ -271,7 +279,7 @@ private fun ResultDisplay(
                 text = display,
                 modifier = Modifier.fillMaxWidth(),
                 color = Color.White,
-                style = resultTextStyle,
+                style = resultTextStyle.copy(fontStyle = FontStyle.Italic),
                 maxLines = 1,
                 softWrap = false,
                 overflow = TextOverflow.Clip,
@@ -287,7 +295,7 @@ private fun CalculatorKeypad(
     onKeyPressed: (String) -> Unit,
     landscape: Boolean
 ) {
-    val rowSpacing = if (landscape) 5.dp else 8.dp
+    val rowSpacing = if (landscape) 4.dp else 6.dp
     val rows = listOf(
         listOf("7", "8", "9", "÷"),
         listOf("4", "5", "6", "×"),
@@ -307,28 +315,53 @@ private fun CalculatorKeypad(
                 horizontalArrangement = Arrangement.spacedBy(rowSpacing),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                row.forEach { label ->
-                    val isDigit = label.length == 1 && label[0].isDigit()
-                    val buttonColors = if (isDigit) {
-                        ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                            contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                val numericCount = if (row[1] == "C") 1 else 3
+                row.take(numericCount).forEach { label ->
+                    val buttonColors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                    )
+
+                    Button(
+                        onClick = { onKeyPressed(label) },
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight(),
+                        border = BorderStroke(1.dp, Color.Black),
+                        shape = MaterialTheme.shapes.medium,
+                        colors = buttonColors
+                    ) {
+                        Text(
+                            text = label,
+                            style = MaterialTheme.typography.titleLarge
                         )
-                    } else {
-                        ButtonDefaults.buttonColors()
+                    }
+                }
+
+                Spacer(modifier = Modifier.width(rowSpacing * 3))
+
+                row.drop(numericCount).forEach { label ->
+                    val verticalModifier = when (label) {
+                        "C", "=", "+" -> Modifier
+                            .fillMaxHeight()
+                            .padding(top = 24.dp)
+                        else -> Modifier
+                            .fillMaxHeight()
+                            .padding(vertical = 12.dp)
                     }
 
                     Button(
                         onClick = { onKeyPressed(label) },
-                        modifier = Modifier.weight(1f),
-                        shape = if (isDigit) {
-                            MaterialTheme.shapes.medium
-                        } else {
-                            MaterialTheme.shapes.small
-                        },
-                        colors = buttonColors
+                        modifier = verticalModifier
+                            .weight(1f),
+                        border = BorderStroke(1.dp, Color.Black),
+                        shape = MaterialTheme.shapes.small,
+                        colors = ButtonDefaults.buttonColors()
                     ) {
-                        Text(label)
+                        Text(
+                            text = label,
+                            style = MaterialTheme.typography.titleLarge
+                        )
                     }
                 }
             }

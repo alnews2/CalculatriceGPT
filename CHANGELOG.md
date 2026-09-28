@@ -2,6 +2,23 @@
 
 ## [À venir]
 
+## [0.6.2] - 2026-09-28
+
+### Modifié
+
+- Réduction de la hauteur de la zone d'affichage du résultat en mode paysage, pour la rapprocher de la hauteur du texte affiché.
+- Affichage du résultat en italique.
+- Agrandissement des touches de la calculatrice en portrait et en paysage, avec réduction des espacements entre les touches.
+- Ajout d'une fine bordure noire autour de chaque touche.
+- Augmentation de la taille de police des libellés des touches.
+- Augmentation de l'espace entre les touches numériques et le groupe des commandes non numériques, en portrait comme en paysage.
+- Regroupement des touches « C » et « = » avec les touches d'opération, en conservant leur même couleur.
+- Réduction de 24 dp de la hauteur des touches du groupe des commandes ; « C », « = » et « + » sont alignées sur le bas de leur ligne, tandis que « ÷ », « × » et « − » restent centrées verticalement.
+
+### Modifié
+
+- Réduction de la hauteur de la zone d'affichage du résultat en mode portrait, pour la rapprocher de la hauteur du texte affiché.
+
 ## [0.6.1] - 2026-09-26
 
 ### Ajouté
