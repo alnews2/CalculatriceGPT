@@ -11,7 +11,8 @@
 - Agrandissement des touches de la calculatrice en portrait et en paysage, avec réduction des espacements entre les touches.
 - Ajout d'une fine bordure noire autour de chaque touche.
 - Augmentation de la taille de police des libellés des touches.
-- Augmentation de l'espace entre les trois touches numériques et les touches d'opération, en portrait comme en paysage.
+- Augmentation de l'espace entre les touches numériques et le groupe des commandes non numériques, en portrait comme en paysage.
+- Regroupement des touches « C » et « = » avec les touches d'opération, en conservant leur même couleur.
 
 
 ### Modifié
